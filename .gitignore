@@ -1,0 +1,29 @@
+# Ignore everything
+*
+
+# But don't ignore these specific files
+!metadata.csv
+!prepare_metadata.py
+!sentences_ch_de_numerics.json
+!config.json
+!requirements.txt
+!sentences_ch_de_transcribed.json
+!.gitignore
+
+# And don't ignore the wavs directory and its contents
+!wavs/
+!wavs/*.wav
+
+# Python virtual environment
+ttsenv/
+
+# Output directories
+output/
+archive/
+
+# Temporary and system files
+.DS_Store
+*.pyc
+__pycache__/
+*.tar.gz
+*.zip

@@ -1,0 +1,100 @@
+{
+    "run_name": "swiss_zh_tts",
+    "model": "tacotron2",
+    "audio": {
+        "sample_rate": 22050,
+        "num_mels": 80,
+        "min_level_db": -100,
+        "ref_level_db": 20,
+        "mel_fmin": 0.0,
+        "mel_fmax": 8000.0,
+        "preemphasis": 0.97,
+        "power": 1.5,
+        "griffin_lim_iters": 60,
+        "signal_norm": true,
+        "symmetric_norm": true,
+        "do_trim_silence": true,
+        "trim_db": 45
+    },
+    "data_path": "./",
+    "text_cleaner": "basic_cleaners",
+    "batch_size": 8,
+    "eval_batch_size": 4,
+    "num_loader_workers": 4,
+    "num_eval_loader_workers": 4,
+    "run_eval": true,
+    "test_delay_epochs": -1,
+    "epochs": 1000,
+    "use_phonemes": false,
+    "phoneme_language": "de",
+    "output_path": "output",
+    "datasets": [
+        {
+            "formatter": "ljspeech",
+            "dataset_name": "ljspeech",
+            "meta_file_train": "metadata.csv",
+            "path": "./"
+        }
+    ],
+    "characters": {
+        "pad": "_",
+        "eos": "~",
+        "bos": "^",
+        "characters": "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzäöüÄÖÜéèêëàâæçñßẞ0123456789«»",
+        "punctuations": "!'(),-.:;? ",
+        "phonemes": []
+    },
+    "model_params": {
+        "num_chars": 100,
+        "encoder_type": "original",
+        "encoder_kernel_size": 5,
+        "encoder_n_convolutions": 3,
+        "encoder_embedding_dim": 256,
+        "decoder_rnn_dim": 512,
+        "prenet_type": "original",
+        "prenet_dropout": true,
+        "prenet_dropout_p": 0.5,
+        "attention_type": "original",
+        "attention_heads": 0,
+        "attention_norm": "sigmoid",
+        "attention_win": false,
+        "windowing": false,
+        "use_forward_attn": false,
+        "forward_attn_mask": false,
+        "transition_agent": false,
+        "location_attn": true,
+        "bidirectional_decoder": false,
+        "double_decoder_consistency": false,
+        "ddc_r": 6,
+        "r": 2,
+        "stopnet": true,
+        "separate_stopnet": true,
+        "max_decoder_steps": 1000,
+        "stop_threshold": 0.5
+    },
+    "lr": 0.0001,
+    "optimizer": "Adam",
+    "optimizer_params": {
+        "betas": [
+            0.9,
+            0.999
+        ],
+        "eps": 1e-7,
+        "weight_decay": 1e-6
+    },
+    "lr_scheduler": "StepLR",
+    "lr_scheduler_params": {
+        "step_size": 15,
+        "gamma": 0.5
+    },
+    "grad_clip": 1.0,
+    "mixed_precision": false,
+    "save_step": 500,
+    "print_step": 25,
+    "save_n_checkpoints": 5,
+    "batch_group_size": 4,
+    "loss_args": {
+        "stopnet_pos_weight": 10,
+        "ga_alpha": 5.0
+    }
+}
